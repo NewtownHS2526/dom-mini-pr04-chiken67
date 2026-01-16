@@ -1,39 +1,71 @@
-console.log("Script Running");
+// 1. Select Elements
+const tuxBtn = document.getElementById('tux-button');
+const daisyBtn = document.getElementById('daisy-button');
+const rockyBtn = document.getElementById('rocky-button');
 
-// Create a helper function that moves a penguin across the grid
-// The function should accept a penguin element and a column position
-// Only allow movement while the column is less than or equal to 6
+const tuxPenguin = document.getElementById('tux-penguin');
+const daisyPenguin = document.getElementById('daisy-penguin');
+const rockyPenguin = document.getElementById('rocky-penguin');
 
+const winnerDisplay = document.getElementById('winner-display');
+const winnerText = document.getElementById('winner-text');
+const resetBtn = document.getElementById('reset-btn');
 
+// 2. Game State
+let positions = {
+  tux: 0,
+  daisy: 0,
+  rocky: 0
+};
 
-// Create position variables for each penguin and set them all to 1
+let gameActive = true;
+const FINISH_LINE = 90; // The percentage needed to win
+const SLIDE_AMOUNT = 6; // How far they move per click
 
+// 3. Movement Function
+function slidePenguin(name, element) {
+  // If game is over, stop buttons from working
+  if (!gameActive) return;
 
+  // Update position logic
+  positions[name] += SLIDE_AMOUNT;
 
-// Query selectors for all buttons and penguins go here
+  // Update Visuals (CSS)
+  element.style.left = positions[name] + '%';
 
+  // Check for Win
+  if (positions[name] >= FINISH_LINE) {
+    declareWinner(name);
+  }
+}
 
+// 4. Winner Function
+function declareWinner(name) {
+  gameActive = false;
+  // Capitalize first letter
+  const formattedName = name.charAt(0).toUpperCase() + name.slice(1);
+  winnerText.textContent = `🎉 ${formattedName} wins the race!`;
+  winnerDisplay.classList.remove('hidden');
+}
 
-// Write the function that moves Tux forward
-// Increase the tux position
-// Call the helper function to update the penguin position
-// Call the winner check function
+// 5. Reset Function
+function resetGame() {
+  // Reset Data
+  positions = { tux: 0, daisy: 0, rocky: 0 };
+  gameActive = true;
 
+  // Reset Visuals
+  tuxPenguin.style.left = '0%';
+  daisyPenguin.style.left = '0%';
+  rockyPenguin.style.left = '0%';
 
+  // Hide winner banner
+  winnerDisplay.classList.add('hidden');
+}
 
-// Write the function that moves Daisy forward
+// 6. Event Listeners
+tuxBtn.addEventListener('click', () => slidePenguin('tux', tuxPenguin));
+daisyBtn.addEventListener('click', () => slidePenguin('daisy', daisyPenguin));
+rockyBtn.addEventListener('click', () => slidePenguin('rocky', rockyPenguin));
 
-
-
-// Write the function that moves Rocky forward
-
-
-
-// Write a function that checks if a penguin reached column 6
-// If so, display the winner message (example: "Tux got the fish! 🐟")
-// Disable all buttons when a winner is found
-
-
-
-// Add event listeners for each button
-// Each button should trigger its own movement function
+resetBtn.addEventListener('click', resetGame);

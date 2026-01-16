@@ -10,32 +10,37 @@
 
   <body>
     <div class="container">
-      <h1>Penguin Slide Challenge</h1>
+      <h1>Penguin Slide Challenge ❄️</h1>
 
       <div class="section">
+        
         <div class="lane">
-          <button id="tux-button" value="tux">Slide!</button>
+          <button id="tux-button" class="slide-btn">Slide!</button>
           <div class="track">
-            <img id="tux-penguin" src="img/tux.png" alt="tux penguin" />
+            <div id="tux-penguin" class="penguin">🐧 <span class="name">Tux</span></div>
           </div>
         </div>
 
         <div class="lane">
-          <button id="daisy-button" value="daisy">Slide!</button>
+          <button id="daisy-button" class="slide-btn">Slide!</button>
           <div class="track">
-            <img id="daisy-penguin" src="img/daisy.png" alt="daisy penguin" />
+            <div id="daisy-penguin" class="penguin">🐧 <span class="name" style="color: pink;">Daisy</span></div>
           </div>
         </div>
 
         <div class="lane">
-          <button id="rocky-button" value="rocky">Slide!</button>
+          <button id="rocky-button" class="slide-btn">Slide!</button>
           <div class="track">
-            <img id="rocky-penguin" src="img/rocky.png" alt="rocky penguin" />
+            <div id="rocky-penguin" class="penguin">🐧 <span class="name" style="color: orange;">Rocky</span></div>
           </div>
         </div>
+
       </div>
 
-      <div id="winner"></div>
+      <div id="winner-display" class="hidden">
+        <h2 id="winner-text"></h2>
+        <button id="reset-btn">Play Again</button>
+      </div>
     </div>
 
     <script src="script.js"></script>

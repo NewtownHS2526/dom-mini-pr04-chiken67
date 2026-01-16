@@ -1,71 +1,110 @@
-img {
-  max-width: 100%;
-}
-
 body {
-  margin: 0px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', Geneva, Verdana, sans-serif;
-  background-color: #e9f7ff;
+  font-family: 'Arial', sans-serif;
+  background-color: #e0f7fa; /* Icy blue background */
+  text-align: center;
+  margin: 0;
+  padding: 20px;
 }
 
 .container {
-  margin: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.section {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+h1 { color: #006064; }
 
 .lane {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 15px;
+}
+
+.slide-btn {
+  padding: 10px 20px;
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  width: 100px;
+  transition: background 0.2s;
+}
+
+.slide-btn:hover {
+  background-color: #0097a7;
 }
 
 .track {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
-  border-bottom: 3px solid #2b6cb0;
-  width: 100%;
+  flex-grow: 1;
+  height: 60px;
+  background-color: #b2ebf2; /* Light ice color */
+  border: 2px solid #80deea;
+  border-radius: 30px;
+  position: relative; /* Essential for absolute positioning of penguins */
+  overflow: hidden;
 }
 
-button {
-  background-color: white;
+/* The Finish Line */
+.track::after {
+  content: '';
+  position: absolute;
+  right: 30px;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: repeating-linear-gradient(
+    0deg,
+    #ff5252,
+    #ff5252 10px,
+    #fff 10px,
+    #fff 20px
+  );
 }
 
-#tux-button:hover {
-  background-color: #ccecff;
+.penguin {
+  font-size: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: left 0.2s cubic-bezier(0.25, 0.1, 0.25, 1); /* Slide effect */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  z-index: 10;
 }
 
-#daisy-button:hover {
-  background-color: #ffd6f2;
+.name {
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: -5px;
+  color: #333;
 }
 
-#rocky-button:hover {
-  background-color: #e2e2e2;
+/* Winner Section */
+#winner-display {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #e8f5e9;
+  border: 2px solid #a5d6a7;
+  border-radius: 10px;
 }
 
-#tux-penguin {
-  grid-column: 1;
-}
+.hidden { display: none; }
 
-#daisy-penguin {
-  grid-column: 1;
-}
-
-#rocky-penguin {
-  grid-column: 1;
-}
-
-#winner {
-  background-color: gold;
-  font-size: 90px;
-  margin-top: 80px;
-  padding: 10px;
-  border-radius: 15px;
+#reset-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
